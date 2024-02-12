@@ -30,9 +30,8 @@ async def demo_get():
 @app.get("/test")
 async def get_homepage_data(wallet: str = Query(...)):
     print(wallet)
-    wallet_data = wallet.split()  # Split the string into a list of words
-    print("Wallet Data:", wallet_data)
-    return {"message": "Wallet data printed. Check the console."}
+    data = get_reward(wallet)
+    return data
 
 
 
