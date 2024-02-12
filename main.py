@@ -1,34 +1,13 @@
+from flask import Flask, request
 from fastapi import FastAPI, BackgroundTasks, HTTPException
 from pydantic import BaseModel
 from extract import *
 import os
+app = Flask(__name__)
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    if request.method == "GET":
+        return "hello"
 
-
-SECRET = os.getenv("SECRET")
-
-#
-app = FastAPI()
-
-class Msg(BaseModel):
-    msg: str
-    secret: str
-
-@app.get("/")
-
-async def root():
-    return {"message": "Hello World. Welcome to FastAPI!"}
-
-
-@app.get("/homepage")
-async def demo_get():
-    homepage = get_reward("screen prosper state able jelly month notice mystery skate palace humor during") 
-    return homepage
-
-@app.post("/backgroundDemo")
-async def demo_post(inp: Msg, background_tasks: BackgroundTasks):
-    
-    background_tasks.add_task(doBackgroundTask, inp)
-    return {"message": "Success, background task started"}
-    
-
-
+if __name__ == "__main__":
+    app.run(debug=True)
