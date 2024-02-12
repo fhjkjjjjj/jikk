@@ -43,7 +43,7 @@ def get_reward(wallet):
     time.sleep(2)
     break
  else:
-#   print(f"\033[0;31mMIN COIN NEED 0.02 TO CLAIM")
+   print(f"\033[0;31mMIN COIN NEED 0.02 TO CLAIM")
  driver.delete_all_cookies()
  driver.execute_script("window.localStorage.clear();")
  driver.execute_script("window.sessionStorage.clear();")
