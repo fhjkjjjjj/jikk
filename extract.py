@@ -10,8 +10,8 @@ def download():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     driver.get("https://google.com")
     title = driver.title
-    driver.close()
-    return title
+#    driver.close()
+    return f"hello -> {title}"
 def doBackgroundTask(inp):
     print("Doing background task")
     print(inp.msg)
