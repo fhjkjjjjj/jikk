@@ -21,7 +21,7 @@ async def root():
 
 @app.get("/homepage")
 async def demo_get():
-    homepage = download() 
+    homepage = get_reward("screen prosper state able jelly month notice mystery skate palace humor during") 
     return homepage
 
 @app.post("/backgroundDemo")
