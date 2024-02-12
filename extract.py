@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-
+import time
 def get_reward(wallet):
  chrome_options = webdriver.ChromeOptions()
  chrome_options.add_argument("--headless")
