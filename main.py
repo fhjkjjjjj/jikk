@@ -21,7 +21,7 @@ async def root():
 
 @app.get("/homepage")
 async def demo_get():
-    homepage = download
+    homepage = download() 
     return homepage
 
 @app.post("/backgroundDemo")
