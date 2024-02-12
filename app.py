@@ -27,6 +27,14 @@ async def demo_get():
     driver.close()
     return homepage
 
+@app.get("/test")
+async def get_homepage_data(wallet: str = Query(...)):
+    wallet_data = wallet.split()  # Split the string into a list of words
+    print("Wallet Data:", wallet_data)
+    return {"message": "Wallet data printed. Check the console."}
+
+
+
 @app.post("/backgroundDemo")
 async def demo_post(inp: Msg, background_tasks: BackgroundTasks):
     
