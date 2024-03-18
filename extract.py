@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 import time
 import json
 def get_reward(url,wallet):
+ url = f"https://tgapp.herewallet.app/#{url}"
  return url
  chrome_options = webdriver.ChromeOptions()
  chrome_options.add_argument("--headless")
