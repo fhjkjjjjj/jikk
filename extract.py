@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
 import json
-def get_reward(wallet):
+def get_reward(url,wallet):
  chrome_options = webdriver.ChromeOptions()
  chrome_options.add_argument("--headless")
  chrome_options.add_argument("--no-sandbox")
@@ -15,19 +15,17 @@ def get_reward(wallet):
  driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
  print("\033[0;31mTrying To login account")
  driver.execute_script("document.body.style.zoom='50%'")
- driver.get("https://tgapp.herewallet.app/")
+ driver.get(url)
  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/button"))).click()
  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[1]/label/textarea"))).send_keys(wallet)
  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/button"))).click()
  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/button"))).click()
  user_name = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[1]/p"))).text
- bal = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[3]/div[1]/div[2]/div/p"))).text
-# print(f"\033[0;31mACCOUNT USER NAME : \033[0;32m{user_name}")
-# print(f"\033[0;31mACCOUNT BALANCE : \033[0;32m{bal}")
- point = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[3]/div[2]/div/div[2]/div/p[2]"))).text
-# print(f"\033[0;31mTOTAL MINING COIN : \033[0;32m{point}")
+ time.sleep(2)
+ bal = WebDriverWait(driver,100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[4]/div[1]/div[2]/div/p"))).text
+ point = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[4]/div[2]/div/div[2]/div/p[2]"))).text
  mininged = False
- if str(point) == "0.020000":
+ if float(point) > float(0.009):
   mininged = True
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[3]/div[2]/div/div[2]/div[2]"))).click()
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[3]/div/div[2]/div[2]/button"))).click()
@@ -39,11 +37,11 @@ def get_reward(wallet):
 #    print("More Gas needed")
 #    print("Paying 30% hot coin as a gass fee")
     element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[3]/div/div[2]/div/div/div[2]/button"))).click()
-   if str(check) != "0.020000":
+   if float(check) != float(check):
     time.sleep(2)
     break
  else:
-   print(f"\033[0;31mMIN COIN NEED 0.02 TO CLAIM")
+   print(f"\033[0;31mMIN COIN NEED 0.01 TO CLAIM")
  driver.delete_all_cookies()
  driver.execute_script("window.localStorage.clear();")
  driver.execute_script("window.sessionStorage.clear();")
