@@ -9,6 +9,7 @@ import time
 import json
 def get_reward(url,wallet):
  url = f"https://tgapp.herewallet.app/{url}&tgWebAppVersion=7.0&tgWebAppPlatform=android&tgWebAppBotInline=1"
+ return url
  chrome_options = webdriver.ChromeOptions()
  chrome_options.add_argument("--headless")
  chrome_options.add_argument("--no-sandbox")
