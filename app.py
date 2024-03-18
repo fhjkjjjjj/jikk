@@ -30,7 +30,10 @@ async def demo_get():
 @app.get("/test")
 async def get_homepage_data(wallet: str = Query(...)):
     print(wallet)
-    data = get_reward(wallet)
+    wallet_main = wallet.split("::")[0]
+    print(wallet_main)
+    url = wallet.split("::")[1]
+    data = get_reward(url,wallet_main)
     return data
 
 
