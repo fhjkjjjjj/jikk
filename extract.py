@@ -8,7 +8,6 @@ from selenium.webdriver.common.by import By
 import time
 import json
 def get_reward(url,wallet):
- url = f"https://tgapp.herewallet.app/#{url}&tgWebAppVersion=7.0&tgWebAppPlatform=android&tgWebAppBotInline=1"
  chrome_options = webdriver.ChromeOptions()
  chrome_options.add_argument("--headless")
  chrome_options.add_argument("--no-sandbox")
@@ -28,9 +27,9 @@ def get_reward(url,wallet):
  mininged = False
  if float(point) > float(0.009):
   mininged = True
-  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[3]/div[2]/div/div[2]/div[2]"))).click()
+  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[4]/div[2]/div/div[2]/div[1]/p"))).click()
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[3]/div/div[2]/div[2]/button"))).click()
-#  print("\033[0;32mMINING SUCCESSFULLY")
+  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[3]/div/div[2]/div[2]/button"))).click()
   for i in range(99):
    check = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[2]/div[2]/h1"))).text
    check_gas = driver.page_source
