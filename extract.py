@@ -30,7 +30,6 @@ def get_reward(url,wallet):
   mininged = True
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[4]/div[2]/div/div[2]/div[1]/p"))).click()
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[3]/div/div[2]/div[2]/button"))).click()
-  driver.get("https://tgapp.herewallet.app/hot")
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[3]/div/div[2]/div[2]/button"))).click()
   for i in range(99):
    check = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[2]/div[2]/h1"))).text
