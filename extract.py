@@ -14,6 +14,7 @@ def get_reward(url,wallet):
  chrome_options.add_argument("--headless")
  chrome_options.add_argument("--no-sandbox")
  chrome_options.add_argument("--disable-dev-shm-usage")
+ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
  driver.execute_script("document.body.style.zoom='50%'")
 # driver.get("https://tgapp.herewallet.app/#tgWebAppData=query_id%3DAAHR_k08AgAAANH-TTyil6SQ%26user%3D%257B%2522id%2522%253A5306711761%252C%2522first_name%2522%253A%2522Aman%2520%25F0%259F%2590%25AF%2522%252C%2522last_name%2522%253A%2522%257C%2520Finder_%25F0%259F%259A%2597%2522%252C%2522username%2522%253A%2522amanmondal444%2522%252C%2522language_code%2522%253A%2522en%2522%252C%2522allows_write_to_pm%2522%253Atrue%257D%26auth_date%3D1710771926%26hash%3D154ea76c4263f1144ce67d2f8480e99affd11cdb504b227c2ea68fcdbc3211f5&tgWebAppVersion=7.0&tgWebAppPlatform=android&tgWebAppBotInline=1")
  driver.get(url)
