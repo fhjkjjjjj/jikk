@@ -7,15 +7,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import time
 import json
+
 def get_reward(url,wallet):
  url = f"https://tgapp.herewallet.app/#{url}&tgWebAppVersion=7.0&tgWebAppPlatform=android&tgWebAppBotInline=1"
  chrome_options = webdriver.ChromeOptions()
  chrome_options.add_argument("--headless")
  chrome_options.add_argument("--no-sandbox")
  chrome_options.add_argument("--disable-dev-shm-usage")
- driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
- print("\033[0;31mTrying To login account")
  driver.execute_script("document.body.style.zoom='50%'")
+# driver.get("https://tgapp.herewallet.app/#tgWebAppData=query_id%3DAAHR_k08AgAAANH-TTyil6SQ%26user%3D%257B%2522id%2522%253A5306711761%252C%2522first_name%2522%253A%2522Aman%2520%25F0%259F%2590%25AF%2522%252C%2522last_name%2522%253A%2522%257C%2520Finder_%25F0%259F%259A%2597%2522%252C%2522username%2522%253A%2522amanmondal444%2522%252C%2522language_code%2522%253A%2522en%2522%252C%2522allows_write_to_pm%2522%253Atrue%257D%26auth_date%3D1710771926%26hash%3D154ea76c4263f1144ce67d2f8480e99affd11cdb504b227c2ea68fcdbc3211f5&tgWebAppVersion=7.0&tgWebAppPlatform=android&tgWebAppBotInline=1")
  driver.get(url)
  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/button"))).click()
  element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[1]/label/textarea"))).send_keys(wallet)
@@ -30,6 +30,7 @@ def get_reward(url,wallet):
   mininged = True
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div/div/div[4]/div[2]/div/div[2]/div[1]/p"))).click()
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[3]/div/div[2]/div[2]/button"))).click()
+ # driver.get("https://tgapp.herewallet.app/hot")
   element = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[3]/div/div[2]/div[2]/button"))).click()
   for i in range(99):
    check = WebDriverWait(driver, 100).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[2]/div/div[2]/div[2]/h1"))).text
@@ -54,7 +55,6 @@ def get_reward(url,wallet):
   "mininged":mininged
  }
  return j
-
 
 
 def download():
