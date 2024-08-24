@@ -4,16 +4,16 @@ FROM cypress/browsers:latest
 # Set environment variable for the port
 ARG PORT=443
 
-# Set environment variable for Python user base directory
-ENV PYTHONUSERBASE=/home/root/.local
-
-# Update package lists and install Python and pip
+# Install Python and pip
 RUN apt-get update && \
-    apt-get install -y python3-pip
+    apt-get install -y python3-pip python3-venv
 
-# Install Python dependencies
+# Create a virtual environment
+RUN python3 -m venv /env
+
+# Install Python dependencies into the virtual environment
 COPY requirements.txt .
-RUN pip3 install --user -r requirements.txt
+RUN /env/bin/pip install -r requirements.txt
 
 # Copy application code
 COPY . /app
@@ -24,5 +24,5 @@ WORKDIR /app
 # Expose the port
 EXPOSE 443
 
-# Define the command to run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"]
+# Use the virtual environment's Python to run the app
+CMD ["/env/bin/uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"]
