@@ -26,12 +26,11 @@ async def demo_get():
     homepage = getGoogleHomepage(driver)
     driver.close()
     return homepage
-
 @app.get("/test")
 async def get_homepage_data(wallet: str = Query(...),data: str = Query(...)):
     print(wallet)
     print(data) 
-    data = get_reward(str(data), wallet) 
+    data = download() 
     return data
 
 
