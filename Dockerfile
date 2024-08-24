@@ -1,10 +1,28 @@
-ARG PORT=443
+# Use the Cypress base image with browsers
 FROM cypress/browsers:latest
-RUN echo $(python3 -m site --user-base)
+
+# Set environment variable for the port
+ARG PORT=443
+
+# Set environment variable for Python user base directory
+ENV PYTHONUSERBASE=/home/root/.local
+
+# Update package lists and install Python and pip
+RUN apt-get update && \
+    apt-get install -y python3-pip
+
+# Install Python dependencies
 COPY requirements.txt .
-ENV PATH /home/root/.local/bin:${PATH}
-RUN apt-get update
-RUN apt-get install -y python3-pip
-RUN pip3 install -r requirements.txt
+RUN pip3 install --user -r requirements.txt
+
+# Copy application code
 COPY . /app
-CMD uvicorn main:app --host 0.0.0.0 --port $PORT
+
+# Set the working directory
+WORKDIR /app
+
+# Expose the port
+EXPOSE 443
+
+# Define the command to run the application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"]
