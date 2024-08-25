@@ -26,4 +26,4 @@ WORKDIR /app
 EXPOSE 443
 
 # Use the virtual environment's Python to run the app
-CMD /env/bin/uvicorn main:app --host 0.0.0.0 --port $PORT
+CMD /env/bin/uvicorn app:app --host 0.0.0.0 --port $PORT
