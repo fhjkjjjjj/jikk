@@ -4,7 +4,7 @@ FROM cypress/browsers:latest
 # Set environment variable for the port
 ARG PORT=443
 ENV PORT=${PORT}
-
+FROM python:3.11
 # Install Python and pip
 RUN apt-get update && \
     apt-get install -y python3-pip python3-venv
