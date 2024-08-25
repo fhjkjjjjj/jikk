@@ -1,8 +1,8 @@
-from fastapi import FastAPI, BackgroundTasks, HTTPException, Query
+from fastapi import FastAPI, BackgroundTasks, HTTPException
 from pydantic import BaseModel
 from extract import *
 import os
-import base64
+
 
 SECRET = os.getenv("SECRET")
 
@@ -26,14 +26,6 @@ async def demo_get():
     homepage = getGoogleHomepage(driver)
     driver.close()
     return homepage
-@app.get("/test")
-async def get_homepage_data(wallet: str = Query(...),data: str = Query(...)):
-    print(wallet)
-    print(data) 
-    data = download() 
-    return data
-
-
 
 @app.post("/backgroundDemo")
 async def demo_post(inp: Msg, background_tasks: BackgroundTasks):
@@ -41,4 +33,3 @@ async def demo_post(inp: Msg, background_tasks: BackgroundTasks):
     background_tasks.add_task(doBackgroundTask, inp)
     return {"message": "Success, background task started"}
     
-
